@@ -1,0 +1,33 @@
+# Smithery configuration for CRM
+# Schema: https://smithery.ai/docs/build/project-config
+# Remote HTTP MCP — server hosted at https://api.mcp.ai/p_crm
+
+name: crm-mcp
+displayName: "CRM"
+description: >
+  Seu CRM próprio, totalmente customizável e dirigido por agentes de IA. Comece com contatos, empresas e funil de vendas, depois crie seus próprios objetos e campos e ganhe API na hora. Você é dono de todos os dados, isolados num banco só seu. Paga só pelo que armazena e usa.
+
+version: 0.1.0
+license: MIT
+homepage: https://github.com/mcp-dir/crm-mcp
+repository: https://github.com/mcp-dir/crm-mcp
+
+tags:
+  - crm
+  - brazil
+  - horizontal
+  - read-write
+
+# Remote HTTP MCP — sem startCommand local (servidor já hospedado)
+startCommand:
+  type: http
+  url: https://api.mcp.ai/p_crm
+
+auth:
+  type: oauth2
+  resourceMetadataUrl: https://api.mcp.ai/p_crm/.well-known/oauth-protected-resource
+  fallback:
+    type: agent-auth
+    description: >
+      Para clientes sem OAuth 2.1. O agente expõe uma tool authenticate(token).
+      Usuário gera o JWT em https://app.mcp.ai/agent-auth e cola no chat.
